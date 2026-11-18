@@ -1,56 +1,60 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#15251d">
-  <meta name="description" content="Controle suas finanças pessoais, acompanhe gastos e descubra como economizar.">
-  <title>Meu Financeiro | Controle pessoal</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101b2d"><meta name="description" content="Dashboard de finanças pessoais.">
+<title>Meu Financeiro | Dashboard</title><link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <main class="container">
-    <header class="topbar">
-      <a class="brand" href="#"><span class="brand-mark">M</span><span><b>Meu Financeiro</b><small>Seu dinheiro sob controle</small></span></a>
-      <div class="top-actions"><input id="monthFilter" type="month" aria-label="Selecionar mês"><button class="btn btn-primary" id="newEntry">+ Novo lançamento</button></div>
-    </header>
-
-    <section class="welcome">
-      <div><p class="eyebrow">VISÃO GERAL</p><h1>Cuide bem do seu dinheiro.</h1><p class="muted">Acompanhe seu mês, entenda seus hábitos e encontre oportunidades para economizar.</p></div>
-      <div class="welcome-balance"><span>Saldo do mês</span><strong id="balance">R$ 0,00</strong><small id="balanceMessage">Receitas menos despesas</small></div>
-    </section>
-
-    <section class="stats">
-      <article class="stat-card"><span>Receitas</span><strong class="green" id="income">R$ 0,00</strong><small>Entradas no período</small></article>
-      <article class="stat-card"><span>Despesas</span><strong class="red" id="expenses">R$ 0,00</strong><small>Saídas no período</small></article>
-      <article class="stat-card"><span>Taxa de economia</span><strong id="savingRate">0%</strong><small>Percentual que sobrou</small></article>
-      <article class="stat-card"><span>Lançamentos</span><strong id="entryCount">0</strong><small>Movimentações no período</small></article>
-    </section>
-
-    <section class="main-grid">
-      <article class="panel"><div class="panel-heading"><div><p class="eyebrow">ACOMPANHAMENTO</p><h2>Gastos por categoria</h2></div></div><div id="categoryChart" class="category-list"><p class="empty">Adicione despesas para visualizar suas categorias.</p></div></article>
-      <article class="panel"><div class="panel-heading"><div><p class="eyebrow">INTELIGÊNCIA FINANCEIRA</p><h2>Diagnóstico do mês</h2></div><span class="sparkle">✦</span></div><div id="insights" class="insights"><p class="empty">Seu diagnóstico aparecerá aqui.</p></div></article>
-    </section>
-
-    <section class="main-grid lower-grid">
-      <article class="panel"><div class="panel-heading"><div><p class="eyebrow">PLANEJAMENTO</p><h2>Limites de gastos</h2></div><button class="btn btn-light" id="editBudgets">Editar limites</button></div><div id="budgetList"><p class="empty">Defina limites para acompanhar seus gastos.</p></div></article>
-      <article class="panel"><div class="panel-heading"><div><p class="eyebrow">EVOLUÇÃO</p><h2>Comparação mensal</h2></div></div><div id="monthComparison"><p class="empty">Registre despesas em mais de um mês para comparar.</p></div></article>
-    </section>
-
-    <section class="panel transactions-panel"><div class="panel-heading"><div><p class="eyebrow">HISTÓRICO</p><h2>Movimentações</h2></div><button class="btn btn-light" id="exportCsv">↓ Exportar CSV</button></div>
-      <div class="table-wrap"><table><thead><tr><th>Data</th><th>Descrição</th><th>Categoria</th><th>Tipo</th><th class="right">Valor</th><th></th></tr></thead><tbody id="entryRows"></tbody></table></div>
-      <p class="empty" id="emptyEntries">Nenhum lançamento neste mês. Clique em “Novo lançamento” para começar.</p>
-    </section>
-    <footer>Meu Financeiro · Seus dados ficam salvos neste navegador.</footer>
-  </main>
-
-  <dialog id="entryDialog"><form method="dialog" id="entryForm"><div class="dialog-heading"><div><p class="eyebrow">MOVIMENTAÇÃO</p><h2>Novo lançamento</h2></div><button type="button" class="close" id="closeEntry" aria-label="Fechar">×</button></div>
-    <label>Descrição<input id="description" required maxlength="80" placeholder="Ex.: supermercado, salário..."></label>
-    <div class="form-row"><label>Tipo<select id="type"><option value="expense">Despesa</option><option value="income">Receita</option></select></label><label>Valor (R$)<input id="amount" type="number" min="0.01" step="0.01" required placeholder="0,00"></label></div>
-    <div class="form-row"><label>Categoria<select id="category"></select></label><label>Data<input id="date" type="date" required></label></div>
-    <button class="btn btn-primary submit-btn" type="submit">Salvar lançamento</button>
-  </form></dialog>
-  <dialog id="budgetDialog"><form method="dialog" id="budgetForm"><div class="dialog-heading"><div><p class="eyebrow">ORÇAMENTO</p><h2>Limites mensais</h2></div><button type="button" class="close" id="closeBudgets">×</button></div><p class="muted">Defina quanto pretende gastar em cada categoria. Deixe em branco para não estabelecer limite.</p><div id="budgetFields" class="budget-fields"></div><button class="btn btn-primary submit-btn" type="submit">Salvar limites</button></form></dialog>
-  <script src="assets/js/app.js"></script>
-</body>
-</html>
+<div class="app-shell">
+<aside class="sidebar">
+ <a class="brand" href="#"><span class="brand-mark">M</span><span><b>Meu Financeiro</b><small>CONTROLE INTELIGENTE</small></span></a>
+ <p class="nav-caption">MENU PRINCIPAL</p>
+ <nav class="side-nav" aria-label="Navegação principal">
+  <button class="nav-link active" data-page="dashboard"><span>▦</span> Dashboard</button>
+  <button class="nav-link" data-page="transactions"><span>↕</span> Lançamentos</button>
+  <button class="nav-link" data-page="planning"><span>◎</span> Planejamento</button>
+  <button class="nav-link" data-page="reports"><span>▤</span> Relatórios</button>
+ </nav>
+ <div class="sidebar-tip"><span class="tip-icon">✦</span><b>Pequenos passos, grandes resultados.</b><p>Organize hoje para ter mais liberdade amanhã.</p></div>
+ <div class="sidebar-foot">Seus dados ficam salvos neste navegador.</div>
+</aside>
+<main class="main-area">
+ <header class="topbar"><div><p class="eyebrow">ÁREA FINANCEIRA</p><h1 id="pageTitle">Dashboard</h1></div><div class="top-actions"><label class="month-label">Período <input id="monthFilter" type="month" aria-label="Selecionar mês"></label><button class="btn btn-primary" id="newEntry">＋ Novo lançamento</button></div></header>
+ <section class="page active" id="page-dashboard">
+  <div class="welcome"><div><span class="welcome-tag">✦ VISÃO GERAL DO SEU DINHEIRO</span><h2>Olá! Vamos cuidar das suas finanças?</h2><p>Acompanhe seus resultados e tome decisões com mais confiança.</p></div><div class="welcome-art">R$</div></div>
+  <div class="stats">
+   <article class="stat-card"><div class="stat-top"><span>Saldo do mês</span><span class="stat-icon purple">◈</span></div><strong id="balance">R$ 0,00</strong><small id="balanceMessage">Receitas menos despesas</small></article>
+   <article class="stat-card"><div class="stat-top"><span>Receitas</span><span class="stat-icon green-bg">↗</span></div><strong class="green" id="income">R$ 0,00</strong><small>Entradas no período</small></article>
+   <article class="stat-card"><div class="stat-top"><span>Despesas</span><span class="stat-icon red-bg">↘</span></div><strong class="red" id="expenses">R$ 0,00</strong><small>Saídas no período</small></article>
+   <article class="stat-card"><div class="stat-top"><span>Taxa de economia</span><span class="stat-icon amber-bg">％</span></div><strong id="savingRate">0%</strong><small>Percentual que sobrou</small></article>
+  </div>
+  <div class="content-grid">
+   <article class="panel chart-panel"><div class="panel-heading"><div><p class="eyebrow">MOVIMENTAÇÃO</p><h3>Receitas x despesas</h3></div><span class="legend"><i class="legend-income"></i> Receitas <i class="legend-expense"></i> Despesas</span></div><div id="monthlyChart" class="monthly-chart"><p class="empty">Adicione lançamentos para visualizar sua evolução.</p></div></article>
+   <article class="panel"><div class="panel-heading"><div><p class="eyebrow">DISTRIBUIÇÃO</p><h3>Despesas por categoria</h3></div></div><div id="categoryChart" class="category-list"><p class="empty">Adicione despesas para visualizar.</p></div></article>
+  </div>
+  <div class="content-grid lower-grid">
+   <article class="panel"><div class="panel-heading"><div><p class="eyebrow">INTELIGÊNCIA FINANCEIRA</p><h3>Diagnóstico do mês</h3></div><span class="sparkle">✦</span></div><div id="insights" class="insights"><p class="empty">Seu diagnóstico aparecerá aqui.</p></div></article>
+   <article class="panel"><div class="panel-heading"><div><p class="eyebrow">ÚLTIMAS ATIVIDADES</p><h3>Movimentações recentes</h3></div><button class="text-btn" data-goto="transactions">Ver todas →</button></div><div id="recentEntries"><p class="empty">Seus lançamentos aparecerão aqui.</p></div></article>
+  </div>
+ </section>
+ <section class="page" id="page-transactions">
+  <div class="page-intro"><div><h2>Seus lançamentos</h2><p>Tenha todas as entradas e saídas organizadas em um só lugar.</p></div><button class="btn btn-primary" id="newEntryAlt">＋ Adicionar lançamento</button></div>
+  <div class="stats compact-stats"><article class="stat-card"><span>Receitas no período</span><strong class="green" id="txIncome">R$ 0,00</strong></article><article class="stat-card"><span>Despesas no período</span><strong class="red" id="txExpenses">R$ 0,00</strong></article><article class="stat-card"><span>Total de registros</span><strong id="entryCount">0</strong></article></div>
+  <article class="panel transactions-panel"><div class="panel-heading"><div><p class="eyebrow">HISTÓRICO COMPLETO</p><h3>Entradas e saídas</h3></div><button class="btn btn-light" id="exportCsv">↓ Exportar CSV</button></div><div class="table-wrap"><table><thead><tr><th>Data</th><th>Descrição</th><th>Categoria</th><th>Tipo</th><th class="right">Valor</th><th></th></tr></thead><tbody id="entryRows"></tbody></table></div><p class="empty" id="emptyEntries">Nenhum lançamento neste mês. Clique em “Novo lançamento” para começar.</p></article>
+ </section>
+ <section class="page" id="page-planning">
+  <div class="page-intro"><div><h2>Planejamento mensal</h2><p>Defina limites realistas e acompanhe o quanto ainda pode gastar.</p></div><button class="btn btn-primary" id="editBudgets">＋ Definir limites</button></div>
+  <div class="content-grid"><article class="panel"><div class="panel-heading"><div><p class="eyebrow">SEU ORÇAMENTO</p><h3>Limites por categoria</h3></div></div><div id="budgetList"><p class="empty">Defina limites para acompanhar seus gastos.</p></div></article><article class="panel"><div class="panel-heading"><div><p class="eyebrow">RESUMO</p><h3>Visão do orçamento</h3></div></div><div id="budgetSummary"><p class="empty">Defina limites para ver seu resumo.</p></div></article></div>
+ </section>
+ <section class="page" id="page-reports">
+  <div class="page-intro"><div><h2>Relatórios e análises</h2><p>Compare seus meses e identifique oportunidades para economizar.</p></div><button class="btn btn-light" id="exportCsvAlt">↓ Exportar CSV</button></div>
+  <div class="content-grid"><article class="panel"><div class="panel-heading"><div><p class="eyebrow">COMPARAÇÃO</p><h3>Despesas x mês anterior</h3></div></div><div id="monthComparison"><p class="empty">Registre despesas em mais de um mês para comparar.</p></div></article><article class="panel"><div class="panel-heading"><div><p class="eyebrow">INDICADORES</p><h3>Saúde financeira</h3></div></div><div id="reportHealth"><p class="empty">Registre movimentações para gerar indicadores.</p></div></article></div>
+  <article class="panel"><div class="panel-heading"><div><p class="eyebrow">POR CATEGORIA</p><h3>Onde seu dinheiro está indo</h3></div></div><div id="reportCategories" class="category-list"></div></article>
+ </section>
+ <footer>Meu Financeiro <span>•</span> Organização simples para decisões melhores.</footer>
+</main></div>
+<dialog id="entryDialog"><form method="dialog" id="entryForm"><div class="dialog-heading"><div><p class="eyebrow">MOVIMENTAÇÃO</p><h2>Novo lançamento</h2></div><button type="button" class="close" id="closeEntry">×</button></div><label>Descrição<input id="description" required maxlength="80" placeholder="Ex.: supermercado, salário..."></label><div class="form-row"><label>Tipo<select id="type"><option value="expense">Despesa</option><option value="income">Receita</option></select></label><label>Valor (R$)<input id="amount" type="number" min="0.01" step="0.01" required placeholder="0,00"></label></div><div class="form-row"><label>Categoria<select id="category"></select></label><label>Data<input id="date" type="date" required></label></div><button class="btn btn-primary submit-btn" type="submit">Salvar lançamento</button></form></dialog>
+<dialog id="budgetDialog"><form method="dialog" id="budgetForm"><div class="dialog-heading"><div><p class="eyebrow">ORÇAMENTO</p><h2>Limites mensais</h2></div><button type="button" class="close" id="closeBudgets">×</button></div><p class="muted">Defina quanto pretende gastar em cada categoria. Deixe em branco para não estabelecer limite.</p><div id="budgetFields" class="budget-fields"></div><button class="btn btn-primary submit-btn" type="submit">Salvar limites</button></form></dialog>
+<script src="assets/js/app.js"></script>
+</body></html>
