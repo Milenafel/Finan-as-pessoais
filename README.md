@@ -1,29 +1,46 @@
-# Meu Financeiro — Controle pessoal
+# Meu Financeiro
 
-Um painel simples para acompanhar receitas, despesas, saldo mensal e taxa de economia, com análise automática e limites de orçamento por categoria.
+Aplicativo de finanças pessoais feito com HTML, CSS e JavaScript puro.
 
-## Como usar
-1. Abra o site (ou execute `index.html` localmente).
-2. Escolha o mês.
-3. Clique em **Novo lançamento** para adicionar receitas ou despesas.
-4. Defina limites mensais nas categorias de orçamento.
-5. Confira **Diagnóstico do mês** para alertas e recomendações.
-6. Use **Exportar CSV** para baixar uma cópia dos lançamentos.
+## Estrutura do projeto
 
-## Recursos
-- Resumo de receitas, despesas, saldo e taxa de economia
-- Despesas agrupadas por categoria
-- Diagnóstico baseado em saldo, percentual da renda comprometido e limites de categoria
-- Limites mensais editáveis
-- Persistência local no navegador (`localStorage`)
-- Exportação CSV
-- Interface responsiva para celular e computador
+```
+Finan-as-pessoais/
+├── index.html              # Página principal do aplicativo
+├── assets/
+│   ├── css/
+│   │   └── style.css       # Identidade visual e layout responsivo
+│   └── js/
+│       └── app.js          # Cadastro, cálculos, análises e exportação
+├── docs/
+│   └── funcionalidades.md  # Guia das funcionalidades
+└── README.md
+```
 
-## Privacidade
-Os dados são armazenados localmente no navegador usado para abrir o app. Eles não são enviados a um servidor. Use a exportação CSV para backup e evite limpar os dados do navegador antes de fazer uma cópia.
+## Funcionalidades
 
-## Publicar com GitHub Pages
-No repositório, abra **Settings → Pages**, selecione **Deploy from a branch**, escolha **main** e a pasta **/(root)**, e salve. O GitHub Pages pode levar alguns minutos para publicar.
+- Cadastro de receitas e despesas.
+- Cálculo automático de saldo mensal e taxa de economia.
+- Despesas agrupadas por categoria.
+- Limites de gastos e alertas quando ultrapassados.
+- Comparação de despesas com o mês anterior.
+- Diagnóstico automático com alertas e sugestões de economia.
+- Exportação dos lançamentos em CSV, compatível com Excel.
+- Interface adaptável a computador e celular.
+
+## Visualizar o aplicativo
+
+Abra `index.html` no navegador ou habilite o GitHub Pages:
+
+1. Acesse **Settings → Pages**.
+2. Em **Build and deployment**, escolha **Deploy from a branch**.
+3. Selecione a branch `main` e a pasta `/(root)`.
+4. Salve e aguarde a publicação.
+
+## Dados e privacidade
+
+Os lançamentos e limites ficam no armazenamento local do navegador (`localStorage`). Não há conexão com bancos nem envio de dados para servidores. Os dados não são sincronizados entre dispositivos; exporte CSV para manter um backup.
 
 ## Tecnologias
-HTML, CSS e JavaScript puro; sem dependências externas.
+
+HTML5, CSS3 e JavaScript, sem bibliotecas externas ou processo de build.
