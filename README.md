@@ -1,46 +1,43 @@
 # Meu Financeiro
 
-Aplicativo de finanças pessoais feito com HTML, CSS e JavaScript puro.
+Aplicativo de finanças pessoais feito com HTML, CSS e JavaScript.
 
 ## Estrutura do projeto
 
 ```
 Finan-as-pessoais/
-├── index.html              # Página principal do aplicativo
+├── index.html
 ├── assets/
-│   ├── css/
-│   │   └── style.css       # Identidade visual e layout responsivo
+│   ├── css/style.css
 │   └── js/
-│       └── app.js          # Cadastro, cálculos, análises e exportação
+│       ├── app.js
+│       └── supabase-config.example.js
 ├── docs/
-│   └── funcionalidades.md  # Guia das funcionalidades
+│   ├── funcionalidades.md
+│   └── CONFIGURACAO_SUPABASE.md
+├── supabase/schema.sql
 └── README.md
 ```
 
-## Funcionalidades
-
+## Funcionalidades atuais
 - Cadastro de receitas e despesas.
-- Cálculo automático de saldo mensal e taxa de economia.
-- Despesas agrupadas por categoria.
-- Limites de gastos e alertas quando ultrapassados.
-- Comparação de despesas com o mês anterior.
-- Diagnóstico automático com alertas e sugestões de economia.
-- Exportação dos lançamentos em CSV, compatível com Excel.
-- Interface adaptável a computador e celular.
+- Cálculo de saldo mensal e taxa de economia.
+- Despesas por categoria, limites e alertas.
+- Comparação mensal e diagnóstico financeiro.
+- Exportação CSV e interface responsiva.
 
-## Visualizar o aplicativo
+## Preparação para armazenamento em nuvem
+O diretório `supabase/` contém o schema SQL para criar tabelas de lançamentos, orçamentos e metas no Supabase, com Row Level Security (RLS) e isolamento por usuário.
 
-Abra `index.html` no navegador ou habilite o GitHub Pages:
+**Importante:** o aplicativo ainda utiliza `localStorage`. O banco em nuvem ainda não está conectado à interface; login, sincronização e migração de dados precisam ser implementados e testados antes de inserir dados financeiros reais.
 
-1. Acesse **Settings → Pages**.
-2. Em **Build and deployment**, escolha **Deploy from a branch**.
-3. Selecione a branch `main` e a pasta `/(root)`.
-4. Salve e aguarde a publicação.
+Siga o passo a passo em [docs/CONFIGURACAO_SUPABASE.md](docs/CONFIGURACAO_SUPABASE.md).
 
-## Dados e privacidade
+## Privacidade
+- Desative novos cadastros públicos no Supabase e crie somente a conta autorizada.
+- As políticas RLS restringem cada registro ao usuário autenticado correspondente.
+- Nunca publique a chave secreta `service_role`.
+- Não versione o arquivo local `assets/js/supabase-config.js` com credenciais.
 
-Os lançamentos e limites ficam no armazenamento local do navegador (`localStorage`). Não há conexão com bancos nem envio de dados para servidores. Os dados não são sincronizados entre dispositivos; exporte CSV para manter um backup.
-
-## Tecnologias
-
-HTML5, CSS3 e JavaScript, sem bibliotecas externas ou processo de build.
+## Visualizar
+Abra `index.html` no navegador. Para publicar pelo GitHub Pages, acesse Settings → Pages e selecione a branch principal e a pasta raiz.
